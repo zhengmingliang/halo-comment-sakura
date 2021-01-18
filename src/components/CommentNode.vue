@@ -197,7 +197,9 @@ export default {
   },
   computed: {
     avatar() {
-      return (
+      // 如果有头像地址，则优先加载头像地址，否则去gravatar 加载头像信息
+      return this.comment.avatar ? this.comment.avatar :
+      (
         this.configs.gravatarSource +
         `/${this.comment.gravatarMd5}?s=256&d=` +
         this.options.comment_gravatar_default

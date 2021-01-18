@@ -162,7 +162,7 @@ export default {
         authorUrl: null,
         email: null,
         content: "",
-       
+        avatar: this.configs.gravatarSource + "?d=mm",
       },
       previewMode: false,
       infoes: [],
@@ -223,6 +223,7 @@ export default {
     this.comment.authorUrl = authorUrl ? authorUrl : "";
     this.comment.email = email ? email : "";
     this.avatar = avatar ? avatar : this.avatar;
+    this.comment.avatar = this.avatar;
 
     this.$nextTick(() => {
       POWERMODE.colorful = true; // make power mode colorful
@@ -482,8 +483,10 @@ export default {
           _self.$tips( "拉取QQ头像成功！", 2000, _self);
           _self.comment.author = data.nickname;
           _self.comment.email = data.email;
+          _self.comment.avatar = data.avatar;
           _self.avatar = data.avatar;
           _self.lockPullAvatar = true;
+
         })
         .catch(() => {
           errorQQCallback();
